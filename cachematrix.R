@@ -1,3 +1,5 @@
+## these functions inverse matrix
+
 MakeCacheMatrix <- function(x = matrix()) {
         m <- NULL
         set <- function(y) {
@@ -11,7 +13,7 @@ MakeCacheMatrix <- function(x = matrix()) {
              setmatrix = setmatrix,
              getmatrix = getmatrix)
 }
-
+## the function cachesolve prevents the NULL for matrix inverse correctly
 CacheSolve <- function(x, ...) {
         m <- x$getmatrix()
         if(!is.null(m)) {
@@ -23,3 +25,11 @@ CacheSolve <- function(x, ...) {
         x$setmatrix(m)
         m
 }
+
+## Example
+matrixex <- MakeCacheMatrix(matrix(1:4, 2, 2)) ##create the matrix
+matrixex$get() ## get the matrix
+matrixex$getmatrix() ## try to inverse but gets null
+CacheSolve(matrixex)
+CacheSolve(matrixex) ## this two cast gets cached data
+matrixex$getmatrix() ##inverses the matrix
